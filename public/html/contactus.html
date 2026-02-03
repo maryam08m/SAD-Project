@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact us</title>
+    <link rel="stylesheet" href="css/contactus.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* استایل‌های اضافه شده برای بهبود صفحه تماس با ما */
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            direction: rtl;
+            text-align: right;
+            margin: 0;
+            padding: 0;
+            font-family: 'Baloo Bhaijaan 2', Tahoma, Geneva, sans-serif;
+        }
+
+        /* بهبود هدر */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .navbar {
+            display: flex;
+            align-items: center;
+            width: 100%;
+        }
+
+        .navbar-nav {
+            display: flex;
+            align-items: center;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            justify-content: space-between;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: #333;
+            padding: 8px 15px;
+            display: block;
+            transition: color 0.3s;
+        }
+
+            .nav-link:hover {
+                color: #8c8369;
+            }
+
+        /* بهبود بخش آیکون‌ها */
+        .nav-icon {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-right: auto;
+        }
+
+        .nav-account, .nav-shop, .nav-admin {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            position: relative; /* For badge positioning */
+        }
+
+        /* بهبود dropdown */
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            background: white;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border-radius: 5px;
+            padding: 10px 0;
+            min-width: 150px;
+            right: 0;
+            z-index: 100;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+
+        .dropdown-item {
+            display: block;
+            padding: 8px 20px;
+            text-decoration: none;
+            color: #333;
+            transition: background 0.3s;
+        }
+
+            .dropdown-item:hover {
+                background: #f8f8f8;
+            }
+
+        /* بهبود بخش تماس با ما */
+        .contactus-container {
+            display: flex;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px 20px;
+            gap: 40px;
+        }
+
+        .discription {
+            flex: 1;
+            background: #f9f9f9;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+            .discription h2 {
+                color: #333;
+                margin-bottom: 20px;
+                padding-bottom: 10px;
+                border-bottom: 2px solid #8c8369;
+            }
+
+            .discription p {
+                margin-bottom: 15px;
+                line-height: 1.6;
+                color: #555;
+            }
+
+            .discription a {
+                color: #8c8369;
+                text-decoration: none;
+                transition: color 0.3s;
+            }
+
+                .discription a:hover {
+                    color: #716a54;
+                    text-decoration: underline;
+                }
+
+        /* بهبود فرم */
+        .forms-container {
+            flex: 1;
+            background: #f9f9f9;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        #contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+            #contact-form label {
+                display: block;
+                margin-bottom: 5px;
+                font-weight: bold;
+                color: #333;
+            }
+
+            #contact-form input,
+            #contact-form textarea {
+                width: 100%;
+                padding: 12px;
+                border: 1px solid #ddd;
+                border-radius: 5px;
+                font-size: 14px;
+                transition: border 0.3s;
+            }
+
+                #contact-form input:focus,
+                #contact-form textarea:focus {
+                    outline: none;
+                    border-color: #8c8369;
+                }
+
+                #contact-form input::placeholder,
+                #contact-form textarea::placeholder {
+                    color: #999;
+                }
+
+            #contact-form textarea {
+                min-height: 120px;
+                resize: vertical;
+            }
+
+            #contact-form button {
+                background: #8c8369;
+                color: white;
+                border: none;
+                padding: 14px 25px;
+                border-radius: 5px;
+                font-size: 16px;
+                cursor: pointer;
+                transition: background 0.3s;
+                width: 100%;
+            }
+
+                #contact-form button:hover {
+                    background: #716a54;
+                }
+
+        /* بهبود فوتر */
+        footer {
+            background: #f8f8f8;
+            padding: 30px 20px;
+            margin-top: 40px;
+            border-top: 1px solid #eee;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .brand img {
+            height: 120px;
+        }
+
+        .categories ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .categories li {
+            margin-bottom: 8px;
+        }
+
+        .categories a {
+            text-decoration: none;
+            color: #333;
+            transition: color 0.3s;
+        }
+
+            .categories a:hover {
+                color: #8c8369;
+            }
+
+        /* بهبود خطوط جداکننده */
+        img[src="images/Logo-and-SVGs/line.svg"] {
+            display: block;
+            margin: 30px auto;
+            width: 80%;
+            max-width: 800px;
+        }
+
+        /* ریسپانسیو */
+        @media (max-width: 768px) {
+            .contactus-container {
+                flex-direction: column;
+                gap: 30px;
+            }
+
+            .navbar-nav {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .nav-icon {
+                margin-right: 0;
+                order: -1;
+                width: 100%;
+                justify-content: center;
+                margin-bottom: 10px;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .discription, .forms-container {
+                padding: 20px;
+            }
+
+            .nav-link {
+                padding: 8px 10px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a class="navbar-logo" href="main.html">
+            <img src="images/Logo-and-SVGs/BAROQUE.svg" alt="باروک" width="30px"
+                 style="align-content: center; margin-top: 10px;">
+        </a>
+        <nav class="navbar">
+            <ul class="navbar-nav">
+                <div style="display: flex; gap: 20px;">
+                <li class="nav-item">
+                    <div class="nav-text">
+                        <a href="main.html" class="nav-link">خانه</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <div class="nav-text">
+                        <a href="#" class="nav-link">محصولات</a>
+                        <div class="dropdown-menu">
+                            <a href="product1.html" class="dropdown-item">گردن‌بند</a>
+                            <a href="product2.html" class="dropdown-item">دست‌بند</a>
+                            <a href="product3.html" class="dropdown-item">انگشتر</a>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <div class="nav-text">
+                        <a href="sizeguide.html" class="nav-link">راهنمای سایز</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <div class="nav-text">
+                        <a href="contactus.html" class="nav-link">تماس با ما</a>
+                    </div>
+                </li>
+                </div>
+
+                <div class="nav-icon">
+                    <li class="nav-item">
+                        <div class="nav-admin">
+                            <a href="admin.html" class="admin-icon" title="پنل مدیریت">
+                                <i class="fas fa-user-shield" style="font-size: 1.2rem; color: #8c8369;"></i>
+                            </a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <div class="nav-account">
+                            <a href="account.html" class="nav-link">
+                                <img src="images/Logo-and-SVGs/account.svg" alt="حساب کاربری" height="35px">
+                            </a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <div class="nav-shop">
+                            <button class="nav-button" onclick="window.location.href='cart.html'">
+                                <img src="images/Logo-and-SVGs/shopping-cart.svg" alt="سبد خرید" height="35px">
+                                </button>
+                        </div>
+                    </li>
+                </div>
+            </ul>
+        </nav>
+    </header>
+
+    <br><br>
+
+    <img src="images/Logo-and-SVGs/line.svg" alt="خط جداکننده">
+
+    <br><br>
+
+    <div class="contactus-container">
+        <div class="discription">
+            <h2>راه‌های ارتباطی:</h2>
+            <br>
+            <P>شماره تماس: ۰۹۱۳۱۴۵۴۰۵۳</P>
+            <p>ساعات پاسخگویی: شنبه تا پنجشنبه، ۹ صبح تا ۹ شب</p>
+            <p>پیج اینستاگرام: <a href="https://instagram.com/baroque_fashion" target="_blank">@baroque_fashion</a></p>
+            <p>پیج دوم اینستاگرام: <a href="https://instagram.com/baroque.handmade" target="_blank">@baroque.handmade</a></p>
+            <br>
+            <h3>درباره ما</h3>
+            <p>فروشگاه باروک با سال‌ها تجربه در زمینه طراحی و تولید زیورآلات دست‌ساز، آماده ارائه بهترین خدمات به شما عزیزان می‌باشد.</p>
+        </div>
+
+        <div class="forms-container">
+            <h2 style="margin-bottom: 20px; color: #333; border-bottom: 2px solid #8c8369; padding-bottom: 10px;">فرم تماس با ما</h2>
+            <form id="contact-form">
+                <label for="fullname">نام کامل:</label>
+                <input type="text" id="fullname" name="fullname" required placeholder="نام و نام خانوادگی خود را وارد کنید">
+
+                <label for="email">آدرس ایمیل:</label>
+                <input type="email" id="email" name="email" required placeholder="example@domain.com">
+
+                <label for="phone">شماره تلفن:</label>
+                <input type="tel" id="phone" name="phone" placeholder="۰۹۱۲۳۴۵۶۷۸۹">
+
+                <label for="description">پیام شما:</label>
+                <textarea id="description" name="description" required placeholder="پیام خود را اینجا بنویسید..."></textarea>
+
+                <button type="submit">ارسال پیام</button>
+            </form>
+        </div>
+    </div>
+
+    <br>
+
+    <img src="images/Logo-and-SVGs/line.svg" alt="خط جداکننده">
+
+    <footer>
+        <br>
+        <div class="footer-content">
+            <div class="brand">
+                <a href="#">
+                    <img src="images/Logo-and-SVGs/BAROQUE.svg" alt="باروک" class="footer-logo" height="155px">
+                </a>
+            </div>
+            <div class="categories">
+                <ul>
+                    <li><a href="main.html">خانه</a></li>
+                    <li><a href="product1.html">گردن‌بند</a></li>
+                    <li><a href="product2.html">دست‌بند</a></li>
+                    <li><a href="product3.html">انگشتر</a></li>
+                    <li><a href="contactus.html">تماس با ما</a></li>
+                </ul>
+            </div>
+        </div>
+        <br>
+    </footer>
+
+    <script src="js/app.js"></script>
+    
+    <script>
+        // مدیریت ارسال فرم
+        document.getElementById('contact-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            // اعتبارسنجی ساده
+            const fullname = document.getElementById('fullname').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const description = document.getElementById('description').value.trim();
+
+            if (!fullname || !email || !description) {
+                alert('لطفا فیلدهای الزامی را پر کنید.');
+                return;
+            }
+
+            // شبیه‌سازی ارسال فرم (اینجا می‌توانید کد Fetch برای ارسال به سرور را اضافه کنید)
+            alert('پیام شما با موفقیت ارسال شد. در اسرع وقت با شما تماس خواهیم گرفت.');
+
+            // ریست کردن فرم
+            this.reset();
+        });
+
+        // مدیریت dropdown منو
+        document.addEventListener('DOMContentLoaded', function () {
+            const dropdowns = document.querySelectorAll('.dropdown');
+
+            dropdowns.forEach(dropdown => {
+                dropdown.addEventListener('mouseenter', function () {
+                    this.querySelector('.dropdown-menu').style.display = 'block';
+                });
+
+                dropdown.addEventListener('mouseleave', function () {
+                    this.querySelector('.dropdown-menu').style.display = 'none';
+                });
+            });
+        });
+
+        // بهبود تجربه کاربری برای فرم
+        const formInputs = document.querySelectorAll('#contact-form input, #contact-form textarea');
+
+        formInputs.forEach(input => {
+            // اضافه کردن کلاس focus هنگام فوکوس
+            input.addEventListener('focus', function () {
+                this.style.borderColor = '#8c8369';
+                this.style.boxShadow = '0 0 0 2px rgba(140, 131, 105, 0.1)';
+            });
+
+            input.addEventListener('blur', function () {
+                this.style.borderColor = '#ddd';
+                this.style.boxShadow = 'none';
+            });
+
+            // اعتبارسنجی ایمیل
+            if (input.type === 'email') {
+                input.addEventListener('blur', function () {
+                    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (this.value && !emailPattern.test(this.value)) {
+                        this.style.borderColor = '#ff4444';
+                        alert('لطفا یک ایمیل معتبر وارد کنید.');
+                    }
+                });
+            }
+
+            // اعتبارسنجی شماره تلفن
+            if (input.type === 'tel') {
+                input.addEventListener('input', function () {
+                    this.value = this.value.replace(/[^0-9۰-۹]/g, '');
+                });
+            }
+        });
+    </script>
+</body>
+</html>

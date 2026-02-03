@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products - Bracelets</title>
+    <link rel="stylesheet" href="css/product1.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <header>
+        <a class="navbar-logo" href="main.html">
+            <img src="images/Logo-and-SVGs/BAROQUE.svg" alt="" width="30px"
+                style="align-content: center; margin-top: 10px;">
+        </a>
+        <nav class="navbar">
+            <br>
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <div class="nav-text">
+                        <a href="main.html" class="nav-link">خانه</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <div class="nav-text">
+                        <a href="#" class="nav-link">محصولات</a>
+                        <div class="dropdown-menu">
+                            <a href="product1.html" class="dropdown-item">گردن‌بند</a>
+                            <a href="product2.html" class="dropdown-item">دست‌بند</a>
+                            <a href="product3.html" class="dropdown-item">انگشتر</a>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <div class="nav-text">
+                        <a href="sizeguide.html" class="nav-link">راهنمای سایز</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <div class="nav-text">
+                        <a href="contactus.html" class="nav-link">تماس با ما</a>
+                    </div>
+                </li>
+                <div class="nav-icon">
+                    <li class="nav-item">
+                        <div class="nav-account">
+                            <a href="account.html" class="nav-link"><img src="images/Logo-and-SVGs/account.svg"
+                                    alt="Account" height="35px"></a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <div class="nav-shop">
+                            <button class="nav-button" onclick="window.location.href='cart.html'">
+                                <img src="images/Logo-and-SVGs/shopping-cart.svg" alt="shopping-cart" height="35px">
+                                </button>
+                        </div>
+                    </li>
+                </div>
+            </ul>
+        </nav>
+    </header>
+    <br>
+    
+    <img src="images/Logo-and-SVGs/line.svg" alt="">
+    
+    <div class="product-container" id="product-list">
+        <p style="text-align:center; width:100%; font-family: 'Baloo Bhaijaan 2'; font-size: 1.2rem; color: #8c8369;">
+            در حال بارگذاری محصولات...
+        </p>
+    </div>
+
+    <footer>
+        <br>
+        <div class="footer-content">
+            <div class="brand">
+                <a href="#"> <img src="images/Logo-and-SVGs/BAROQUE.svg" alt="Baroque" class="fotter-logo"
+                        height="155px"></a>
+            </div>
+            <div class="categories">
+                <ul>
+                    <li><a href="main.html">خانه</a></li>
+                    <li><a href="product1.html">گردن‌بند</a></li>
+                    <li><a href="product2.html">دست‌بند</a></li>
+                    <li><a href="product3.html">انگشتر</a></li>
+                </ul>
+            </div>
+        </div>
+        <br>
+    </footer>
+
+    <script src="js/app.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Load products with category 'bracelet'
+            loadProducts('#product-list', 'bracelet');
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,171 @@
+@import url('https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2&family=Kay+Pho+Du&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  color: #2c2c2c;
+  background-color: #DDDDDD;
+  font-family: 'Baloo Bhaijaan 2', sans-serif;
+  font-family: 'Kay Pho Du', serif;
+  font-size: large;
+  margin-right: 10px;
+  margin-left: 10px;
+  margin: 0px;
+  height: 100%;
+}
+
+.navbar-logo {
+  justify-content: center;
+  display: flex;
+}
+
+.navbar {
+  list-style-type: none;
+  padding: 0;
+  margin-right: 50px;
+  margin-left: 50px;
+}
+
+.navbar-nav {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-text {
+  margin-top: 10px;
+}
+
+.nav-icon {
+  align-items: left;
+  float: left;
+}
+
+.nav-item {
+  float: right;
+  position: relative;
+}
+
+.nav-link {
+  display: block;
+  color: #2c2c2c;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.nav-button {
+  background-color: #DDDDDD;
+  border: none;
+  padding: 14px 16px;
+  cursor: pointer;
+}
+
+.nav-link:hover {
+  color: #8c8369;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  right: 0;
+  background-color: #dddddd;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  border-radius: 15%;
+}
+
+.dropdown-menu .dropdown-item {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: right;
+}
+
+.dropdown-menu .dropdown-item:hover {
+  background-color: #f1f1f1;
+}
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+.discription{
+  direction: rtl;
+  margin-right: 30px;
+  margin-left: 30px;
+}
+
+h3{
+    text-align: center;
+    color: #2c2c2c;
+}
+
+.size{
+    width: 300px;
+    height: auto;
+    max-width: 900px;
+}
+.dis{
+    margin-right: 40px;
+    margin-left: 40px;
+}
+
+footer {
+  background-color: #9f9f9f;
+  color: #ececec;
+  text-align: center;
+  padding-right: 20px;
+  padding-left: 20px;
+  width: 100%;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+}
+
+.footer-logo {
+  margin-bottom: 5px;
+}
+
+.categories {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.categories ul {
+  direction: rtl;
+  display: flex; 
+  flex-direction: column;
+}
+
+.categories li {
+  margin-bottom: 10px;
+}
+
+.categories a {
+  text-decoration: none;
+  color: #fff;
+}
+
+.categories a {
+  text-decoration: none;
+  color: #fff;
+}

@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>باروک - فروشگاه زیورآلات</title>
+    
+    <link rel="stylesheet" href="css/main.css">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2&family=Kay+Pho+Du&family=Playfair+Display&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* Slideshow Specific Styles */
+        .slideshow-container {
+            position: relative;
+            max-width: 100%;
+            margin: auto;
+            overflow: hidden; /* Keeps images inside */
+        }
+
+        .mySlides {
+            display: none;
+            width: 100%;
+            transition: opacity 1s ease-in-out; 
+        }
+
+        /* Navigation Arrows */
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            padding: 16px;
+            margin-top: -22px;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            transition: 0.6s ease;
+            border-radius: 3px 0 0 3px;
+            user-select: none;
+            background-color: rgba(0,0,0,0.3);
+            z-index: 10;
+        }
+
+        .next {
+            right: auto; /* Reset right for RTL */
+            left: 0;
+            border-radius: 0 3px 3px 0;
+        }
+
+        .prev {
+            left: auto; /* Reset left for RTL */
+            right: 0;
+            border-radius: 3px 0 0 3px;
+        }
+
+        .prev:hover, .next:hover {
+            background-color: rgba(0,0,0,0.8);
+        }
+
+        /* Dots */
+        .dot {
+            cursor: pointer;
+            height: 15px;
+            width: 15px;
+            margin: 0 2px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            transition: background-color 0.6s ease;
+        }
+
+        .active, .dot:hover {
+            background-color: #717171;
+        }
+
+        /* Fade Animation Class */
+        .fade {
+            animation-name: fade;
+            animation-duration: 1.5s;
+        }
+
+        @keyframes fade {
+            from {opacity: .4} 
+            to {opacity: 1}
+        }
+        
+        /* Admin Icon Specifics */
+        .admin-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #8c8369, #716a54);
+            color: white;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+        
+        .admin-icon:hover {
+            transform: scale(1.1);
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="hero_area">
+        <header>
+            <nav class="navbar">
+                <a class="navbar-logo" href="main.html">
+                    <img src="images/Logo-and-SVGs/BAROQUE.svg" alt="باروک" width="40px" style="margin-top: 5px;">
+                </a>
+
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a href="main.html" class="nav-link">خانه</a>
+                    </li>
+                    
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link">محصولات</a>
+                        <div class="dropdown-menu">
+                            <a href="product1.html" class="dropdown-item">گردن‌بند</a>
+                            <a href="product2.html" class="dropdown-item">دست‌بند</a>
+                            <a href="product3.html" class="dropdown-item">انگشتر</a>
+                        </div>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a href="sizeguide.html" class="nav-link">راهنمای سایز</a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a href="contactus.html" class="nav-link">تماس با ما</a>
+                    </li>
+
+                    <div class="nav-icon">
+                        <li class="nav-item">
+                            <a href="admin.html" class="admin-icon" title="پنل مدیریت">
+                                <i class="fas fa-user-shield"></i>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="account.html" class="nav-link" title="حساب کاربری">
+                                <img src="images/Logo-and-SVGs/account.svg" alt="حساب کاربری" height="30px">
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <button class="nav-button" onclick="window.location.href='cart.html'" title="سبد خرید">
+                                <img src="images/Logo-and-SVGs/shopping-cart.svg" alt="سبد خرید" height="30px">
+                            </button>
+                        </li>
+                    </div>
+                </ul>
+            </nav>
+        </header>
+
+        <br>
+
+        <div class="slideshow-container">
+            <div class="mySlides fade">
+                <img src="images/Slider1/slider1.jpg" style="width:100%" alt="زیورآلات باروک">
+            </div>
+            <div class="mySlides fade">
+                <img src="images/Slider1/banner3.jpg" style="width:100%" alt="مجموعه جدید">
+            </div>
+            <div class="mySlides fade">
+                <img src="images/Slider1/banner2.jpg" style="width:100%" alt="تخفیف ویژه">
+            </div>
+            
+            <a class="prev" onclick="plusSlides(-1)">&#10095;</a>
+            <a class="next" onclick="plusSlides(1)">&#10094;</a>
+        </div>
+
+        <br>
+
+        <div style="text-align:center">
+            <span class="dot" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+            <span class="dot" onclick="currentSlide(3)"></span>
+        </div>
+    </div>
+    <br>
+
+    <div class="category-container">
+        <a href="product2.html" class="category-icon">
+            <img src="images/Logo-and-SVGs/bracelet.svg" alt="دست‌بند" class="icon-svg" />
+            <p class="icon-text">دست‌بند</p>
+        </a>
+        <a href="product1.html" class="category-icon">
+            <img src="images/Logo-and-SVGs/necklace.svg" alt="گردن‌بند" class="icon-svg" />
+            <p class="icon-text">گردن‌بند</p>
+        </a>
+        <a href="product3.html" class="category-icon">
+            <img src="images/Logo-and-SVGs/ring.svg" alt="انگشتر" class="icon-svg" />
+            <p class="icon-text">انگشتر</p>
+        </a>
+    </div>
+
+    <div style="text-align: center; margin: 30px 0;">
+        <img src="images/Logo-and-SVGs/line.svg" alt="خط تزئینی" width="200px">
+        <p class="newcollection-text">New collection</p>
+    </div>
+
+    <div class="product-container" id="new-collection-container">
+        <p style="text-align:center; width:100%; font-family: 'Baloo Bhaijaan 2'; font-size: 1.2rem; color: #8c8369;">
+            در حال بارگذاری محصولات جدید...
+        </p>
+    </div>
+
+    <h2 style="text-align: center; font-size: 190%; margin-top: 50px;">چرا باروک؟</h2>
+    <br>
+
+    <div class="why-container">
+        <div class="why">
+            <img src="images/Logo-and-SVGs/best.svg" alt="بهترین کیفیت" class="why-svg">
+            <h3 class="why-text">بهترین کیفیت</h3>
+        </div>
+        <div class="why">
+            <img src="images/Logo-and-SVGs/free.svg" alt="ارسال رایگان" class="why-svg">
+            <h3 class="why-text">ارسال رایگان</h3>
+        </div>
+        <div class="why">
+            <img src="images/Logo-and-SVGs/fast.svg" alt="ارسال سریع" class="why-svg">
+            <h3 class="why-text">ارسال سریع برای شهر کرمان</h3>
+        </div>
+    </div>
+
+    <br><br>
+
+    <div class="instagram-container">
+        <div class="instagram">
+            <a href="https://www.instagram.com/baroque.handmade?utm_source=ig_web_button_share_sheet&igsh=OGQ5ZDc2ODk2ZA==" target="_blank">
+                ما را در اینستاگرام دنبال کنید <i class="fab fa-instagram"></i>
+            </a>
+        </div>
+    </div>
+
+    <br><br>
+
+    <div class="photocollage-container">
+        <img src="images/photo-collage/photo-(4).jpg" alt="محصولات باروک">
+        <img src="images/photo-collage/photo-(5).jpg" alt="زیورآلات دست‌ساز">
+        <img src="images/photo-collage/photo-(2).jpg" alt="مجموعه طلا">
+        <img src="images/photo-collage/photo-(8).jpg" alt="نقره کاری">
+        <img src="images/photo-collage/photo-(6).jpg" alt="طراحی مدرن">
+        <img src="images/photo-collage/photo-(7).jpg" alt="سنگ‌های طبیعی">
+    </div>
+
+    <footer>
+        <br>
+        <div class="footer-content">
+            <div class="brand">
+                <a href="#">
+                    <img src="images/Logo-and-SVGs/BAROQUE.svg" alt="باروک" class="footer-logo" height="155px">
+                </a>
+            </div>
+            <div class="categories">
+                <ul>
+                    <li><a href="main.html">خانه</a></li>
+                    <li><a href="product1.html">گردن‌بند</a></li>
+                    <li><a href="product2.html">دست‌بند</a></li>
+                    <li><a href="product3.html">انگشتر</a></li>
+                </ul>
+            </div>
+        </div>
+        <br>
+    </footer>
+
+    <script src="js/app.js"></script>
+
+    <script>
+        // --- Slideshow Logic (Fixed) ---
+        let slideIndex = 1;
+        let slideInterval;
+
+        function startSlideshow() {
+            if (slideInterval) clearInterval(slideInterval);
+            slideInterval = setInterval(() => {
+                plusSlides(1);
+            }, 3000); // Change image every 3 seconds
+        }
+
+        function showSlides(n) {
+            let i;
+            let slides = document.getElementsByClassName("mySlides");
+            let dots = document.getElementsByClassName("dot");
+
+            if (n > slides.length) { slideIndex = 1 }
+            if (n < 1) { slideIndex = slides.length }
+
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            
+            for (i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" active", "");
+            }
+
+            slides[slideIndex - 1].style.display = "block";
+            dots[slideIndex - 1].className += " active";
+        }
+
+        function plusSlides(n) {
+            clearInterval(slideInterval);
+            showSlides(slideIndex += n);
+            startSlideshow();
+        }
+
+        function currentSlide(n) {
+            clearInterval(slideInterval);
+            showSlides(slideIndex = n);
+            startSlideshow();
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            showSlides(slideIndex);
+            startSlideshow();
+            
+            // Load products from DB using app.js function
+            // 8 items for the "New Collection"
+            if(typeof loadProducts === 'function') {
+                loadProducts('#new-collection-container', null, 8); 
+            } else {
+                console.error("app.js not loaded correctly");
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account - Baroque</title>
+    <link rel="stylesheet" href="css/account.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <nav class="navbar" style="position: absolute; top: 0; width: 100%; padding: 20px; z-index: 100;">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <div class="nav-text">
+                    <a href="main.html" class="nav-link" style="text-decoration: none; color: #2c2c2c; font-weight: bold;">
+                        <i class="fas fa-arrow-right"></i> بازگشت به خانه
+                    </a>
+                </div>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="main">
+        <div class="container right-panel-active" id="container">
+            
+            <div class="container__form container--signup">
+                <form action="#" class="form" id="signupForm">
+                    <h2 class="form__title">ثبت نام</h2>
+                    <input type="text" id="regName" placeholder="نام کامل" class="input" style="direction: rtl;" />
+                    <input type="email" id="regEmail" placeholder="ایمیل" class="input" required style="direction: rtl;" />
+                    <input type="password" id="regPass" placeholder="رمز ورود" class="input" required style="direction: rtl;" />
+                    <button class="btn" type="submit">ثبت نام</button>
+                </form>
+            </div>
+
+            <div class="container__form container--signin">
+                <form action="#" class="form" id="loginForm">
+                    <h2 class="form__title">ورود</h2>
+                    <input type="email" id="loginEmail" placeholder="ایمیل" class="input" required style="direction: rtl;" />
+                    <input type="password" id="loginPass" placeholder="رمز ورود" class="input" required style="direction: rtl;" />
+                    <a href="#" class="link">رمز عبور خود را فراموش کرده اید؟</a>
+                    <button class="btn" type="submit">ورود</button>
+                </form>
+            </div>
+
+            <div class="container__overlay">
+                <div class="overlay">
+                    <div class="overlay__panel overlay--left">
+                        <button class="btn" id="signIn">ورود</button>
+                    </div>
+                    <div class="overlay__panel overlay--right">
+                        <button class="btn" id="signUp">ثبت نام</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 1. Sliding Panel Logic
+        const signInBtn = document.getElementById("signIn");
+        const signUpBtn = document.getElementById("signUp");
+        const container = document.getElementById("container");
+
+        signInBtn.addEventListener("click", () => {
+            container.classList.remove("right-panel-active");
+        });
+
+        signUpBtn.addEventListener("click", () => {
+            container.classList.add("right-panel-active");
+        });
+
+        // 2. Login Form Logic
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPass').value;
+
+            try {
+                const res = await fetch('/api/login', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({ email, password })
+                });
+                
+                const data = await res.json();
+                
+                if (res.ok) {
+                    // Save user info (exclude password)
+                    localStorage.setItem('user', JSON.stringify(data.user));
+                    alert('خوش آمدید!');
+                    
+                    // Redirect based on role
+                    if(data.user.role === 'admin') {
+                        window.location.href = 'admin.html';
+                    } else {
+                        window.location.href = 'main.html';
+                    }
+                } else {
+                    alert(data.error || 'خطا در ورود');
+                }
+            } catch (err) {
+                console.error(err);
+                alert('خطا در برقراری ارتباط با سرور');
+            }
+        });
+
+        // 3. Register Form Logic
+        document.getElementById('signupForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('regEmail').value;
+            const password = document.getElementById('regPass').value;
+            // Note: Currently backend only expects email/pass, but you can add name support later
+            
+            try {
+                const res = await fetch('/api/register', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({ email, password })
+                });
+
+                if (res.ok) {
+                    alert('ثبت نام موفقیت آمیز بود. لطفا وارد شوید.');
+                    // Switch to sign in panel automatically
+                    container.classList.remove("right-panel-active");
+                } else {
+                    const data = await res.json();
+                    alert(data.error || 'خطا در ثبت نام');
+                }
+            } catch (err) {
+                console.error(err);
+                alert('خطا در برقراری ارتباط با سرور');
+            }
+        });
+    </script>
+</body>
+</html>

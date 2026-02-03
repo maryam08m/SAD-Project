@@ -1,0 +1,449 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2&family=Kay+Pho+Du&display=swap');
+
+/* --- Global Reset & Body --- */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  color: #2c2c2c;
+  background-color: #DDDDDD;
+  font-family: 'Baloo Bhaijaan 2', sans-serif;
+  margin: 0;
+  padding: 0;
+  direction: rtl; /* Essential for Persian layout */
+}
+
+/* --- Header & Navigation --- */
+.navbar-logo {
+  justify-content: center;
+  display: flex;
+  padding-top: 10px;
+}
+
+.navbar {
+  padding: 0 50px;
+  background-color: #DDDDDD;
+}
+
+.navbar-nav {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.nav-item {
+  position: relative;
+}
+
+.nav-link {
+  display: block;
+  color: #2c2c2c;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 1.1rem;
+}
+
+.nav-link:hover {
+  color: #8c8369;
+}
+
+.nav-icon {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.nav-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+/* Dropdown Menu */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  right: 0;
+  background-color: #dddddd;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 100;
+  border-radius: 10px;
+  top: 100%;
+}
+
+.dropdown-menu .dropdown-item {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: right;
+}
+
+.dropdown-menu .dropdown-item:hover {
+  background-color: #f1f1f1;
+}
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+/* --- Slideshow --- */
+.slideshow-container {
+  max-width: 100%;
+  position: relative;
+  margin: auto;
+  margin-top: 20px;
+}
+
+.mySlides {
+  display: none;
+  width: 100%;
+}
+
+.mySlides img {
+    border-radius: 15px; /* Optional rounded corners for banner */
+}
+
+/* Navigation Buttons (Prev/Next) */
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  margin-top: -22px;
+  padding: 16px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+.prev {
+  left: 0;
+  border-radius: 0 3px 3px 0;
+}
+
+.prev:hover, .next:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Dots */
+.dot {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.active, .dot:hover {
+  background-color: #717171;
+}
+
+/* Fade Animation */
+.fade {
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@keyframes fade {
+  from { opacity: .4 }
+  to { opacity: 1 }
+}
+
+/* --- Category Container --- */
+.category-container {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  align-items: center;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  flex-wrap: wrap;
+}
+
+.category-icon {
+  text-decoration: none;
+  color: #2c2c2c;
+  text-align: center;
+  transition: transform 0.2s;
+}
+
+.category-icon:hover {
+    transform: scale(1.1);
+}
+
+.icon-svg {
+  width: 80px;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+.icon-text {
+  color: #2c2c2c;
+  font-size: 1.2rem;
+  margin-bottom: 5px;
+}
+
+/* --- Product Cards (Dynamic Content) --- */
+.newcollection-text {
+  text-align: center;
+  font-family: 'Playfair Display', serif;
+  font-size: 40px;
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+
+.product-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 0 20px;
+}
+
+.pro1 {
+  width: 280px;
+  padding: 10px;
+  border-radius: 25px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  position: relative;
+  transition: transform 0.3s, box-shadow 0.3s;
+  overflow: hidden;
+}
+
+.pro1:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+/* This targets ALL images in the card. I left this UNTOUCHED as requested. */
+.pro1 img {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+  border-radius: 20px;
+}
+
+.des {
+  text-align: right;
+  padding: 10px;
+}
+
+.des h5 {
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+    color: #2c2c2c;
+}
+
+.des p {
+    font-size: 1rem;
+    color: #8c8369;
+    font-weight: bold;
+}
+
+/* --- THIS IS THE FIX FOR THE PLUS ICON --- */
+.shopping-pro {
+  position: absolute;
+  bottom: 15px;
+  left: 15px; 
+  height: 40px;
+  width: 40px;
+  border: none;
+  border-radius: 50%;
+  background: linear-gradient(45deg, rgba(203,194,165,1) 2%, rgba(150,140,104,1) 45%, rgba(195,183,151,1) 100%);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s;
+  z-index: 10;
+  padding: 0; /* Ensure no padding */
+}
+
+.shopping-pro:hover {
+    transform: scale(1.1);
+}
+
+/* New specific rule to override the big image settings just for the icon */
+.shopping-pro img {
+    width: 20px !important;  /* Force small width */
+    height: 20px !important; /* Force small height */
+    object-fit: contain !important; /* Stop stretching */
+    border-radius: 0 !important; /* Remove rounded corners */
+    margin: 0 !important;
+    padding: 0 !important;
+    filter: brightness(0) invert(1); /* Keep icon white */
+}
+
+/* --- Features (Why Choose Us) --- */
+.why-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 30px;
+  margin: 50px 0;
+  padding: 0 20px;
+}
+
+.why {
+  background-color: #ececec;
+  width: 300px;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: transform 0.3s;
+}
+
+.why:hover {
+    transform: translateY(-5px);
+}
+
+.why-svg {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 20px;
+}
+
+.why-text {
+  font-size: 1.5rem;
+  color: #2c2c2c;
+  margin: 0;
+}
+
+/* --- Instagram Section --- */
+.instagram-container {
+  text-align: center;
+  margin: 50px 0;
+}
+
+.instagram {
+  display: inline-block;
+  padding: 15px 30px;
+  border: 2px solid #2c2c2c;
+  border-radius: 50px;
+  transition: all 0.3s;
+}
+
+.instagram:hover {
+    background-color: #2c2c2c;
+}
+
+.instagram a {
+  text-decoration: none;
+  color: #2c2c2c;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.instagram:hover a {
+    color: #fff;
+}
+
+/* --- Photo Collage --- */
+.photocollage-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  overflow: hidden;
+  margin-bottom: 50px;
+}
+
+.photocollage-container img {
+  width: 16%;
+  height: auto;
+  filter: grayscale(100%);
+  transition: filter 0.5s ease;
+}
+
+.photocollage-container img:hover {
+  filter: grayscale(0%);
+}
+
+/* --- Footer --- */
+footer {
+  background-color: #9f9f9f;
+  color: #ececec;
+  text-align: center;
+  padding: 30px 20px;
+  margin-top: 50px;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.categories ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-align: right;
+}
+
+.categories li {
+  margin-bottom: 10px;
+}
+
+.categories a {
+  text-decoration: none;
+  color: #fff;
+  transition: color 0.3s;
+}
+
+.categories a:hover {
+  color: #2c2c2c;
+}
+
+/* --- Responsive Design --- */
+@media (max-width: 768px) {
+  .navbar-nav {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .nav-icon {
+    justify-content: center;
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .footer-content {
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .photocollage-container img {
+      width: 30%; /* Show fewer images per row on mobile or scroll */
+  }
+}

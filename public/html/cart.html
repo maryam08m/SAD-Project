@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>سبد خرید - باروک</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2&family=Kay+Pho+Du&family=Playfair+Display&display=swap"
+          rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* استایل‌های اختصاصی صفحه سبد خرید */
+        .cart-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .cart-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 30px;
+            color: #2c2c2c;
+        }
+
+        .cart-items {
+            margin-bottom: 30px;
+        }
+
+        .cart-item {
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .cart-item-image {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-left: 20px;
+        }
+
+        .cart-item-details {
+            flex-grow: 1;
+        }
+
+        .cart-item-name {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+            color: #2c2c2c;
+        }
+
+        .cart-item-price {
+            font-size: 1.1rem;
+            color: #8c8369;
+            font-weight: bold;
+        }
+
+        .cart-item-quantity {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        .quantity-btn {
+            background: rgb(203,194,165);
+            background: linear-gradient(45deg, rgba(203,194,165,1) 2%, rgba(150,140,104,1) 45%, rgba(195,183,151,1) 100%);
+            border: none;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.2rem;
+            color: #2c2c2c;
+        }
+
+        .quantity-input {
+            width: 50px;
+            text-align: center;
+            margin: 0 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 5px;
+        }
+
+        .remove-btn {
+            background-color: #ff6b6b;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 20px;
+            transition: background-color 0.3s;
+        }
+
+            .remove-btn:hover {
+                background-color: #ff5252;
+            }
+
+        .cart-summary {
+            background-color: #f9f9f9;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .summary-title {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: #2c2c2c;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .summary-total {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #2c2c2c;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 2px solid #8c8369;
+        }
+
+        .checkout-btn {
+            width: 100%;
+            background: rgb(203,194,165);
+            background: linear-gradient(45deg, rgba(203,194,165,1) 2%, rgba(150,140,104,1) 45%, rgba(195,183,151,1) 100%);
+            color: #2c2c2c;
+            border: none;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: transform 0.3s;
+        }
+
+            .checkout-btn:hover {
+                transform: translateY(-2px);
+            }
+
+        .empty-cart {
+            text-align: center;
+            padding: 50px;
+        }
+
+            .empty-cart img {
+                width: 150px;
+                margin-bottom: 20px;
+            }
+
+            .empty-cart p {
+                font-size: 1.2rem;
+                color: #666;
+                margin-bottom: 20px;
+            }
+
+        .continue-shopping {
+            display: inline-block;
+            background: rgb(203,194,165);
+            background: linear-gradient(45deg, rgba(203,194,165,1) 2%, rgba(150,140,104,1) 45%, rgba(195,183,151,1) 100%);
+            color: #2c2c2c;
+            padding: 12px 25px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: transform 0.3s;
+        }
+
+            .continue-shopping:hover {
+                transform: translateY(-2px);
+            }
+
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        /* Nav Styles from Main (simplified for consistency) */
+        .navbar-logo {
+            justify-content: center;
+            display: flex;
+        }
+        .navbar {
+            list-style-type: none;
+            padding: 0;
+            margin-right: 50px;
+            margin-left: 50px;
+        }
+        .navbar-nav {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .nav-icon {
+            display: flex;
+            gap: 15px;
+        }
+        .admin-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #8c8369, #716a54);
+            color: white;
+            font-size: 1.2rem;
+            text-decoration: none;
+        }
+        
+        @media (max-width: 768px) {
+            .cart-item {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .cart-item-image {
+                margin-left: 0;
+                margin-bottom: 15px;
+            }
+
+            .remove-btn {
+                margin-right: 0;
+                margin-top: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="hero_area">
+        <header>
+            <a class="navbar-logo" href="main.html">
+                <img src="images/Logo-and-SVGs/BAROQUE.svg" alt="" width="30px"
+                     style="align-content: center; margin-top: 10px;">
+            </a>
+            <nav class="navbar">
+                <br>
+                <ul class="navbar-nav">
+                    <div style="display: flex; gap: 20px;">
+                        <li class="nav-item">
+                            <div class="nav-text">
+                                <a href="main.html" class="nav-link">خانه</a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <div class="nav-text">
+                                <a href="#" class="nav-link">محصولات</a>
+                                <div class="dropdown-menu">
+                                    <a href="product1.html" class="dropdown-item">گردن‌بند</a>
+                                    <a href="product2.html" class="dropdown-item">دست‌بند</a>
+                                    <a href="product3.html" class="dropdown-item">انگشتر</a>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <div class="nav-text">
+                                <a href="sizeguide.html" class="nav-link">راهنمای سایز</a>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <div class="nav-text">
+                                <a href="contactus.html" class="nav-link">تماس با ما</a>
+                            </div>
+                        </li>
+                    </div>
+
+                    <div class="nav-icon">
+                        <li class="nav-item">
+                            <div class="nav-admin">
+                                <a href="admin.html" class="admin-icon" title="پنل مدیریت">
+                                    <i class="fas fa-user-shield"></i>
+                                </a>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <div class="nav-account">
+                                <a href="account.html" class="nav-link">
+                                    <img src="images/Logo-and-SVGs/account.svg" alt="Account" height="35px">
+                                </a>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <div class="nav-shop">
+                                <button class="nav-button" onclick="window.location.href='cart.html'">
+                                    <img src="images/Logo-and-SVGs/shopping-cart.svg" alt="shopping-cart" height="35px">
+                                    </button>
+                            </div>
+                        </li>
+                    </div>
+                </ul>
+            </nav>
+        </header>
+    </div>
+
+    <div class="cart-container">
+        <div class="cart-header">
+            <div></div> 
+            <h1 class="cart-title">سبد خرید شما</h1>
+            <div></div>
+        </div>
+
+        <div id="cartContent">
+            </div>
+    </div>
+
+    <footer>
+        <br>
+        <div class="footer-content">
+            <div class="brand">
+                <a href="#">
+                    <img src="images/Logo-and-SVGs/BAROQUE.svg" alt="Baroque" class="fotter-logo"
+                         height="155px">
+                </a>
+            </div>
+            <div class="categories">
+                <ul>
+                    <li><a href="main.html">خانه</a></li>
+                    <li><a href="product1.html">گردن‌بند</a></li>
+                    <li><a href="product2.html">دست‌بند</a></li>
+                    <li><a href="product3.html">انگشتر</a></li>
+                </ul>
+            </div>
+        </div>
+        <br>
+    </footer>
+
+    <script src="js/app.js"></script>
+
+    <script>
+        // --- PAGE SPECIFIC LOGIC ---
+        
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+        // 1. Display Cart
+        function displayCart() {
+            const cartContent = document.getElementById('cartContent');
+
+            if (cart.length === 0) {
+                cartContent.innerHTML = `
+                    <div class="empty-cart">
+                        <img src="images/Logo-and-SVGs/shoppingcart.svg" alt="سبد خرید خالی" style="opacity:0.5;">
+                        <p>سبد خرید شما خالی است</p>
+                        <a href="main.html" class="continue-shopping">ادامه خرید</a>
+                    </div>
+                `;
+                return;
+            }
+
+            let totalPrice = 0;
+            let itemsHTML = '';
+
+            cart.forEach((item, index) => {
+                const itemTotal = item.price * item.quantity;
+                totalPrice += itemTotal;
+
+                itemsHTML += `
+                    <div class="cart-item" data-index="${index}">
+                        <img src="${item.image}" alt="${item.name}" class="cart-item-image" onerror="this.src='images/placeholder.jpg'">
+                        <div class="cart-item-details">
+                            <h3 class="cart-item-name">${item.name}</h3>
+                            <p class="cart-item-price">${item.price.toLocaleString()} تومان</p>
+                            <div class="cart-item-quantity">
+                                <button class="quantity-btn" onclick="updateQuantity(${index}, -1)">-</button>
+                                <input type="number" class="quantity-input" value="${item.quantity}"
+                                       min="1" onchange="updateQuantityInput(${index}, this.value)">
+                                <button class="quantity-btn" onclick="updateQuantity(${index}, 1)">+</button>
+                            </div>
+                        </div>
+                        <button class="remove-btn" onclick="removeFromCart(${index})">حذف</button>
+                    </div>
+                `;
+            });
+
+            cartContent.innerHTML = `
+                <div class="cart-items">
+                    ${itemsHTML}
+                </div>
+                <div class="cart-summary">
+                    <h3 class="summary-title">خلاصه سفارش</h3>
+                    <div class="summary-row">
+                        <span>تعداد محصولات:</span>
+                        <span>${cart.reduce((total, item) => total + item.quantity, 0)} عدد</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>هزینه ارسال:</span>
+                        <span>رایگان</span>
+                    </div>
+                    <div class="summary-row summary-total">
+                        <span>مجموع:</span>
+                        <span>${totalPrice.toLocaleString()} تومان</span>
+                    </div>
+                    <button class="checkout-btn" onclick="checkout()">تکمیل خرید</button>
+                </div>
+            `;
+        }
+
+        // 2. Update Quantity (+/- buttons)
+        function updateQuantity(index, change) {
+            cart[index].quantity += change;
+
+            if (cart[index].quantity < 1) {
+                cart[index].quantity = 1;
+            }
+
+            saveAndRender();
+        }
+
+        // 3. Update Quantity (Input field)
+        function updateQuantityInput(index, value) {
+            const quantity = parseInt(value);
+            if (quantity >= 1) {
+                cart[index].quantity = quantity;
+                saveAndRender();
+            }
+        }
+
+        // 4. Remove Item
+        function removeFromCart(index) {
+            if (confirm('آیا از حذف این محصول اطمینان دارید؟')) {
+                cart.splice(index, 1);
+                saveAndRender();
+            }
+        }
+
+        // Helper to save to LS and refresh UI
+        function saveAndRender() {
+            localStorage.setItem('cart', JSON.stringify(cart));
+            displayCart();
+            // Update the nav badge from app.js if it exists
+            if (typeof updateCartBadge === 'function') {
+                updateCartBadge();
+            }
+        }
+
+        // 5. Checkout Function (Connects to Backend)
+        function checkout() {
+            if (cart.length === 0) return alert('سبد خرید خالی است!');
+
+            const user = JSON.parse(localStorage.getItem('user'));
+            const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+
+            // Fetch API call to Node.js backend
+            fetch('/api/orders', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    userId: user ? user.id : 0, // 0 if guest
+                    totalPrice: totalPrice,
+                    items: cart
+                })
+            })
+            .then(res => res.json())
+            .then(data => {
+                if(data.orderId) {
+                    alert('سفارش با موفقیت ثبت شد! شماره سفارش: ' + data.orderId);
+                    // Clear Cart
+                    localStorage.removeItem('cart');
+                    cart = [];
+                    displayCart();
+                    if (typeof updateCartBadge === 'function') updateCartBadge();
+                } else {
+                    alert('خطا: ' + (data.error || 'مشکلی پیش آمد'));
+                }
+            })
+            .catch(err => {
+                console.error(err);
+                alert('خطا در ارتباط با سرور');
+            });
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            displayCart();
+        });
+    </script>
+</body>
+</html>
