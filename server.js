@@ -49,15 +49,29 @@ app.get('/', (req, res) => {
 
 // --- API ROUTES ---
 
-// 1. Get Products
+// 1. Get Products (SMARTER SEARCH)
 app.get('/api/products', (req, res) => {
-    const category = req.query.category;
-    let sql = "SELECT * FROM products";
+    const { category, search } = req.query;
+    
+    let sql = "SELECT * FROM products WHERE 1=1";
     let params = [];
     
+    // Filter by Category
     if (category) {
-        sql += " WHERE category = ?";
+        sql += " AND category = ?";
         params.push(category);
+    }
+    
+    // Filter by Search (Split words logic)
+    if (search) {
+        // Split the search query into individual words (e.g. "Ring Model 3" -> ["Ring", "Model", "3"])
+        const searchTerms = search.trim().split(/\s+/);
+        
+        searchTerms.forEach(term => {
+            // For each word, add a condition that it must exist in the name OR description
+            sql += " AND (name LIKE ? OR description LIKE ?)";
+            params.push(`%${term}%`, `%${term}%`);
+        });
     }
     
     db.all(sql, params, (err, rows) => {
@@ -139,7 +153,46 @@ app.post('/api/admin/products', (req, res) => {
             res.json({ message: "Product added", id: this.lastID });
         });
 });
+// --- NEW USER ROUTES ---
 
+// 7. Get User Orders (FIXED)
+app.get('/api/user/orders/:userId', (req, res) => {
+    const userId = req.params.userId;
+    // Changed 'ORDER BY created_at' to 'ORDER BY id' to prevent errors
+    db.all("SELECT * FROM orders WHERE user_id = ? ORDER BY id DESC", [userId], (err, rows) => {
+        if (err) {
+            console.error("Database Error:", err.message); // Log error to terminal
+            return res.status(500).json({ error: err.message });
+        }
+        res.json(rows);
+    });
+});
+// 8. Update User Profile
+app.put('/api/user/update/:userId', async (req, res) => {
+    const userId = req.params.userId;
+    const { full_name, password } = req.body;
+    
+    try {
+        if (password) {
+            // Update Name and Password
+            const hashedPassword = await bcrypt.hash(password, 10);
+            db.run("UPDATE users SET full_name = ?, password = ? WHERE id = ?", 
+                [full_name, hashedPassword, userId], function(err) {
+                    if (err) return res.status(500).json({ error: err.message });
+                    res.json({ message: "Profile updated successfully" });
+            });
+        } else {
+            // Update Name Only
+            db.run("UPDATE users SET full_name = ? WHERE id = ?", 
+                [full_name, userId], function(err) {
+                    if (err) return res.status(500).json({ error: err.message });
+                    res.json({ message: "Profile updated successfully" });
+            });
+        }
+    } catch (e) {
+        res.status(500).json({ error: "Server Error" });
+    }
+});
 app.listen(PORT, () => {
     console.log(`\n🚀 Server running at http://localhost:${PORT}`);
     console.log(`👉 Click here to open: http://localhost:${PORT}`);

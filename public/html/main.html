@@ -11,16 +11,15 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2&family=Kay+Pho+Du&family=Playfair+Display&display=swap" rel="stylesheet">
-    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        /* Slideshow Specific Styles */
+        /* Slideshow Styles */
         .slideshow-container {
             position: relative;
             max-width: 100%;
             margin: auto;
-            overflow: hidden; /* Keeps images inside */
+            overflow: hidden;
         }
 
         .mySlides {
@@ -29,7 +28,32 @@
             transition: opacity 1s ease-in-out; 
         }
 
-        /* Navigation Arrows */
+        /* Hover Effect for Banner 1 */
+        .banner-hover-container {
+            position: relative;
+            width: 100%;
+        }
+        .banner-img {
+            width: 100%;
+            display: block;
+            transition: opacity 0.5s ease-in-out;
+        }
+        .banner-hover-container:hover .main-banner {
+            opacity: 0; 
+        }
+        .hover-banner {
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .banner-hover-container:hover .hover-banner {
+            opacity: 1;
+        }
+
         .prev, .next {
             cursor: pointer;
             position: absolute;
@@ -46,24 +70,10 @@
             background-color: rgba(0,0,0,0.3);
             z-index: 10;
         }
+        .next { right: auto; left: 0; border-radius: 0 3px 3px 0; }
+        .prev { left: auto; right: 0; border-radius: 3px 0 0 3px; }
+        .prev:hover, .next:hover { background-color: rgba(0,0,0,0.8); }
 
-        .next {
-            right: auto; /* Reset right for RTL */
-            left: 0;
-            border-radius: 0 3px 3px 0;
-        }
-
-        .prev {
-            left: auto; /* Reset left for RTL */
-            right: 0;
-            border-radius: 3px 0 0 3px;
-        }
-
-        .prev:hover, .next:hover {
-            background-color: rgba(0,0,0,0.8);
-        }
-
-        /* Dots */
         .dot {
             cursor: pointer;
             height: 15px;
@@ -74,40 +84,81 @@
             display: inline-block;
             transition: background-color 0.6s ease;
         }
+        .active, .dot:hover { background-color: #717171; }
 
-        .active, .dot:hover {
-            background-color: #717171;
-        }
-
-        /* Fade Animation Class */
-        .fade {
-            animation-name: fade;
-            animation-duration: 1.5s;
-        }
-
-        @keyframes fade {
-            from {opacity: .4} 
-            to {opacity: 1}
-        }
+        .fade { animation-name: fade; animation-duration: 1.5s; }
+        @keyframes fade { from {opacity: .4} to {opacity: 1} }
         
-        /* Admin Icon Specifics */
         .admin-icon {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 35px;
-            height: 35px;
-            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            width: 35px; height: 35px; border-radius: 50%;
             background: linear-gradient(45deg, #8c8369, #716a54);
-            color: white;
-            font-size: 1.2rem;
-            transition: all 0.3s;
-            text-decoration: none;
+            color: white; font-size: 1.2rem; transition: all 0.3s; text-decoration: none;
+        }
+        .admin-icon:hover { transform: scale(1.1); color: #fff; }
+
+        .search-box {
+            display: flex; align-items: center; background-color: #fff;
+            border: 1px solid #ccc; border-radius: 20px; padding: 2px 10px; margin-left: 15px;
+        }
+        .search-box input {
+            border: none; outline: none; background: transparent;
+            padding: 5px; font-family: 'Baloo Bhaijaan 2', sans-serif; width: 150px; text-align: right;
+        }
+        .search-box button {
+            background: none; border: none; cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
         }
         
-        .admin-icon:hover {
-            transform: scale(1.1);
-            color: #fff;
+        .footer-banner-img {
+            width: 100%; max-width: 300px; height: auto; border-radius: 10px; margin-left: 20px;
+        }
+
+        /* --- NEW: INFINITE SLIDER STYLES --- */
+        .collage-slider-area {
+            overflow: hidden;
+            background: #fff; /* Background for the slider area */
+            padding: 20px 0;
+            white-space: nowrap; /* Forces images to stay in one line */
+            position: relative;
+            direction: ltr; /* Important: Ensures standard sliding direction regardless of RTL site */
+        }
+
+        .collage-track {
+            display: inline-block;
+            animation: scroll-left 40s linear infinite; /* Adjust '40s' to change speed */
+        }
+
+        .collage-track img {
+            height: 250px; /* Fixed height for uniformity */
+            width: auto;   /* Width adjusts automatically */
+            margin: 0 10px;
+            border-radius: 15px;
+            display: inline-block;
+            vertical-align: middle;
+            transition: transform 0.3s, filter 0.3s;
+            cursor: pointer;
+        }
+
+        .collage-track img:hover {
+            transform: scale(1.05);
+            filter: brightness(1.1);
+        }
+
+        /* The Animation */
+        @keyframes scroll-left {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                /* Moves left by 50% (since we duplicated the images, 50% is one full set) */
+                transform: translateX(-50%); 
+            }
+        }
+
+        /* Pause animation on hover */
+        .collage-slider-area:hover .collage-track {
+            animation-play-state: paused;
         }
     </style>
 </head>
@@ -121,9 +172,7 @@
                 </a>
 
                 <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a href="main.html" class="nav-link">خانه</a>
-                    </li>
+                    <li class="nav-item"><a href="main.html" class="nav-link">خانه</a></li>
                     
                     <li class="nav-item dropdown">
                         <a href="#" class="nav-link">محصولات</a>
@@ -134,31 +183,27 @@
                         </div>
                     </li>
                     
-                    <li class="nav-item">
-                        <a href="sizeguide.html" class="nav-link">راهنمای سایز</a>
-                    </li>
-                    
-                    <li class="nav-item">
-                        <a href="contactus.html" class="nav-link">تماس با ما</a>
-                    </li>
+                    <li class="nav-item"><a href="sizeguide.html" class="nav-link">راهنمای سایز</a></li>
+                    <li class="nav-item"><a href="contactus.html" class="nav-link">تماس با ما</a></li>
 
                     <div class="nav-icon">
-                        <li class="nav-item">
-                            <a href="admin.html" class="admin-icon" title="پنل مدیریت">
-                                <i class="fas fa-user-shield"></i>
-                            </a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a href="account.html" class="nav-link" title="حساب کاربری">
-                                <img src="images/Logo-and-SVGs/account.svg" alt="حساب کاربری" height="30px">
-                            </a>
-                        </li>
-
-                        <li class="nav-item">
-                            <button class="nav-button" onclick="window.location.href='cart.html'" title="سبد خرید">
-                                <img src="images/Logo-and-SVGs/shopping-cart.svg" alt="سبد خرید" height="30px">
+                        <div class="search-box">
+                            <input type="text" id="searchInput" placeholder="جستجو..." onkeypress="handleEnter(event)">
+                            <button onclick="performSearch()">
+                                <img src="images/Logo-and-SVGs/Search.svg" alt="Search" width="20px">
                             </button>
+                        </div>
+                        <button class="nav-button" id="theme-toggle" title="تغییر تم">
+    <i class="fas fa-moon"></i>
+</button>
+                        <li class="nav-item">
+                            <a href="admin.html" class="admin-icon" title="پنل مدیریت"><i class="fas fa-user-shield"></i></a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="user_dashboard.html" class="nav-link" title="حساب کاربری"><img src="images/Logo-and-SVGs/account.svg" alt="حساب کاربری" height="30px"></a>
+                        </li>
+                        <li class="nav-item">
+                            <button class="nav-button" onclick="window.location.href='cart.html'" title="سبد خرید"><img src="images/Logo-and-SVGs/shopping-cart.svg" alt="سبد خرید" height="30px"></button>
                         </li>
                     </div>
                 </ul>
@@ -169,21 +214,22 @@
 
         <div class="slideshow-container">
             <div class="mySlides fade">
-                <img src="images/Slider1/slider1.jpg" style="width:100%" alt="زیورآلات باروک">
+                <div class="banner-hover-container">
+                    <img src="images/banner/banner1-hover.jpg" class="hover-banner" alt="زیورآلات باروک">
+                    <img src="images/banner/banner1.jpg" class="banner-img main-banner" style="width:100%" alt="زیورآلات باروک">
+                </div>
             </div>
             <div class="mySlides fade">
-                <img src="images/Slider1/banner3.jpg" style="width:100%" alt="مجموعه جدید">
+                <img src="images/banner/trending.jpg" style="width:100%" alt="مجموعه محبوب">
             </div>
             <div class="mySlides fade">
-                <img src="images/Slider1/banner2.jpg" style="width:100%" alt="تخفیف ویژه">
+                <img src="images/banner/limited.jpg" style="width:100%" alt="تعداد محدود">
             </div>
-            
             <a class="prev" onclick="plusSlides(-1)">&#10095;</a>
             <a class="next" onclick="plusSlides(1)">&#10094;</a>
         </div>
 
         <br>
-
         <div style="text-align:center">
             <span class="dot" onclick="currentSlide(1)"></span>
             <span class="dot" onclick="currentSlide(2)"></span>
@@ -223,21 +269,17 @@
 
     <div class="why-container">
         <div class="why">
-            <img src="images/Logo-and-SVGs/best.svg" alt="بهترین کیفیت" class="why-svg">
-            <h3 class="why-text">بهترین کیفیت</h3>
+            <img src="images/Logo-and-SVGs/best.svg" alt="بهترین کیفیت" class="why-svg"><h3 class="why-text">بهترین کیفیت</h3>
         </div>
         <div class="why">
-            <img src="images/Logo-and-SVGs/free.svg" alt="ارسال رایگان" class="why-svg">
-            <h3 class="why-text">ارسال رایگان</h3>
+            <img src="images/Logo-and-SVGs/free.svg" alt="ارسال رایگان" class="why-svg"><h3 class="why-text">ارسال رایگان</h3>
         </div>
         <div class="why">
-            <img src="images/Logo-and-SVGs/fast.svg" alt="ارسال سریع" class="why-svg">
-            <h3 class="why-text">ارسال سریع برای شهر کرمان</h3>
+            <img src="images/Logo-and-SVGs/fast.svg" alt="ارسال سریع" class="why-svg"><h3 class="why-text">ارسال سریع برای شهر کرمان</h3>
         </div>
     </div>
 
     <br><br>
-
     <div class="instagram-container">
         <div class="instagram">
             <a href="https://www.instagram.com/baroque.handmade?utm_source=ig_web_button_share_sheet&igsh=OGQ5ZDc2ODk2ZA==" target="_blank">
@@ -245,25 +287,36 @@
             </a>
         </div>
     </div>
-
     <br><br>
 
-    <div class="photocollage-container">
-        <img src="images/photo-collage/photo-(4).jpg" alt="محصولات باروک">
-        <img src="images/photo-collage/photo-(5).jpg" alt="زیورآلات دست‌ساز">
-        <img src="images/photo-collage/photo-(2).jpg" alt="مجموعه طلا">
-        <img src="images/photo-collage/photo-(8).jpg" alt="نقره کاری">
-        <img src="images/photo-collage/photo-(6).jpg" alt="طراحی مدرن">
-        <img src="images/photo-collage/photo-(7).jpg" alt="سنگ‌های طبیعی">
+    <div class="collage-slider-area">
+        <div class="collage-track">
+            <img src="images/photo collage/photo-(1).jpg" alt="Gallery 1">
+            <img src="images/photo collage/photo-(2).jpg" alt="Gallery 2">
+            <img src="images/photo collage/photo-(3).jpg" alt="Gallery 3">
+            <img src="images/photo collage/photo-(4).jpg" alt="Gallery 4">
+            <img src="images/photo collage/photo-(5).jpg" alt="Gallery 5">
+            <img src="images/photo collage/photo-(6).jpg" alt="Gallery 6">
+            <img src="images/photo collage/photo-(7).jpg" alt="Gallery 7">
+            <img src="images/photo collage/photo-(8).jpg" alt="Gallery 8">
+            
+            <img src="images/photo collage/photo-(1).jpg" alt="Gallery 1">
+            <img src="images/photo collage/photo-(2).jpg" alt="Gallery 2">
+            <img src="images/photo collage/photo-(3).jpg" alt="Gallery 3">
+            <img src="images/photo collage/photo-(4).jpg" alt="Gallery 4">
+            <img src="images/photo collage/photo-(5).jpg" alt="Gallery 5">
+            <img src="images/photo collage/photo-(6).jpg" alt="Gallery 6">
+            <img src="images/photo collage/photo-(7).jpg" alt="Gallery 7">
+            <img src="images/photo collage/photo-(8).jpg" alt="Gallery 8">
+        </div>
     </div>
 
     <footer>
         <br>
         <div class="footer-content">
             <div class="brand">
-                <a href="#">
-                    <img src="images/Logo-and-SVGs/BAROQUE.svg" alt="باروک" class="footer-logo" height="155px">
-                </a>
+                <a href="#"><img src="images/Logo-and-SVGs/BAROQUE.svg" alt="باروک" class="footer-logo" height="155px"></a>
+                <img src="images/banner/footer img.png" alt="Baroque Style" class="footer-banner-img">
             </div>
             <div class="categories">
                 <ul>
@@ -280,60 +333,33 @@
     <script src="js/app.js"></script>
 
     <script>
-        // --- Slideshow Logic (Fixed) ---
+        // Slideshow Logic
         let slideIndex = 1;
         let slideInterval;
-
         function startSlideshow() {
             if (slideInterval) clearInterval(slideInterval);
-            slideInterval = setInterval(() => {
-                plusSlides(1);
-            }, 3000); // Change image every 3 seconds
+            slideInterval = setInterval(() => { plusSlides(1); }, 3000); 
         }
-
         function showSlides(n) {
             let i;
             let slides = document.getElementsByClassName("mySlides");
             let dots = document.getElementsByClassName("dot");
-
             if (n > slides.length) { slideIndex = 1 }
             if (n < 1) { slideIndex = slides.length }
-
-            for (i = 0; i < slides.length; i++) {
-                slides[i].style.display = "none";
-            }
-            
-            for (i = 0; i < dots.length; i++) {
-                dots[i].className = dots[i].className.replace(" active", "");
-            }
-
+            for (i = 0; i < slides.length; i++) { slides[i].style.display = "none"; }
+            for (i = 0; i < dots.length; i++) { dots[i].className = dots[i].className.replace(" active", ""); }
             slides[slideIndex - 1].style.display = "block";
             dots[slideIndex - 1].className += " active";
         }
+        function plusSlides(n) { clearInterval(slideInterval); showSlides(slideIndex += n); startSlideshow(); }
+        function currentSlide(n) { clearInterval(slideInterval); showSlides(slideIndex = n); startSlideshow(); }
 
-        function plusSlides(n) {
-            clearInterval(slideInterval);
-            showSlides(slideIndex += n);
-            startSlideshow();
-        }
-
-        function currentSlide(n) {
-            clearInterval(slideInterval);
-            showSlides(slideIndex = n);
-            startSlideshow();
-        }
-
-        // Initialize
         document.addEventListener('DOMContentLoaded', () => {
             showSlides(slideIndex);
             startSlideshow();
-            
-            // Load products from DB using app.js function
-            // 8 items for the "New Collection"
-            if(typeof loadProducts === 'function') {
-                loadProducts('#new-collection-container', null, 8); 
-            } else {
-                console.error("app.js not loaded correctly");
+            const urlParams = new URLSearchParams(window.location.search);
+            if (!urlParams.get('search')) {
+                if(typeof loadProducts === 'function') { loadProducts('#new-collection-container', null, 8); }
             }
         });
     </script>

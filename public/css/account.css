@@ -18,19 +18,35 @@
 }
 
 body {
-    background-color: var(--bg-gray);
+    /* Set the background image */
+    background-image: url('../images/signup-login/b.jpg');
+    
+    /* Ensure it covers the whole screen */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* Keeps image fixed when scrolling */
+    
     margin: 0;
     padding: 0;
+    
+    /* Optional: Add a dark overlay if the text is hard to read */
+    /* background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('../images/signup-login/b.jpg'); */
 }
 
 /* --- Main Layout --- */
 .main {
     align-items: center;
-    background-color: var(--bg-gray);
+    
+    /* BACKGROUND IMAGE HERE */
+    background-image: url('../images/signup-login/b.jpg');
+    background-size: cover;
+    background-position: center;
+    
     display: grid;
     height: 100vh;
     place-items: center;
-    padding-top: 50px; /* Space for navbar */
+    padding-top: 50px;
 }
 
 /* --- Navbar --- */

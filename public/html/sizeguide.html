@@ -45,9 +45,18 @@
                         </div>
                     </li>
                     <div class="nav-icon">
+                        <div class="search-box">
+        <input type="text" id="searchInput" placeholder="جستجو..." onkeypress="handleEnter(event)">
+        <button onclick="performSearch()">
+            <img src="images/Logo-and-SVGs/Search.svg" alt="Search" width="20px">
+        </button>
+    </div>
+    <button class="nav-button" id="theme-toggle" title="تغییر تم">
+    <i class="fas fa-moon"></i>
+</button>
                         <li class="nav-item">
                             <div class="nav-account">
-                                <a href="account.html" class="nav-link"><img src="images/Logo-and-SVGs/account.svg"
+                                <a href="user_dashboard.html" class="nav-link"><img src="images/Logo-and-SVGs/account.svg"
                                         alt="Account" height="35px"></a>
                             </div>
                         </li>

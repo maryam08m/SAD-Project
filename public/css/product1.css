@@ -1,35 +1,77 @@
 @import url('https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2&family=Kay+Pho+Du&display=swap');
 
+/* --- THEME VARIABLES (Must match main.css) --- */
+:root {
+    /* Light Mode (Default) */
+    --bg-body: #f4f4f4;
+    --bg-card: #ffffff;
+    --bg-nav: #ffffff;
+    --text-main: #2c2c2c;
+    --text-muted: #555555;
+    --gold: #8c8369;
+    --shadow-soft: 0 4px 15px rgba(0,0,0,0.05);
+    --border-color: #e0e0e0;
+    --icon-filter: none; /* Icons stay black */
+}
+
+/* Dark Mode Overrides */
+body.dark-mode {
+    --bg-body: #121212;       /* Deep luxury black */
+    --bg-card: #1e1e1e;       /* Dark Gray cards */
+    --bg-nav: #1e1e1e;
+    --text-main: #e0e0e0;     /* Soft White text */
+    --text-muted: #b0b0b0;
+    --gold: #d4c8a5;          /* Lighter gold for contrast */
+    --shadow-soft: 0 4px 15px rgba(0,0,0,0.3);
+    --border-color: #333333;
+    
+    /* Inverts black icons to white */
+    --icon-filter: brightness(0) invert(1); 
+}
+
 /* --- Global Reset & Body --- */
 * {
   box-sizing: border-box;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 body {
-  color: #2c2c2c;
-  background-color: #DDDDDD;
-  font-family: 'Baloo Bhaijaan 2', sans-serif; /* Global Font */
+  color: var(--text-main);
+  background-color: var(--bg-body);
+  font-family: 'Baloo Bhaijaan 2', sans-serif;
   margin: 0;
   padding: 0;
   direction: rtl; 
+  animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
 
 /* --- Header & Navigation --- */
 .navbar-logo {
   justify-content: center;
   display: flex;
-  padding-top: 10px;
+  padding-top: 15px;
+  margin-bottom: 10px;
 }
 
 .navbar {
   padding: 0 50px;
-  background-color: #DDDDDD;
+  background-color: var(--bg-nav);
+  box-shadow: var(--shadow-soft);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  border-bottom: 1px solid var(--border-color);
 }
 
 .navbar-nav {
   list-style-type: none;
   margin: 0;
-  padding: 0;
+  padding: 10px 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -42,21 +84,24 @@ body {
 
 .nav-link {
   display: block;
-  color: #2c2c2c;
+  color: var(--text-main);
   text-align: center;
-  padding: 14px 16px;
+  padding: 10px 16px;
   text-decoration: none;
   font-size: 1.1rem;
+  transition: all 0.3s ease;
+  font-weight: 500;
 }
 
 .nav-link:hover {
-  color: #8c8369;
+  color: var(--gold);
+  transform: translateY(-2px);
 }
 
 .nav-icon {
   display: flex;
   align-items: center;
-  gap: 15px;
+  gap: 20px;
 }
 
 .nav-button {
@@ -64,6 +109,75 @@ body {
   border: none;
   cursor: pointer;
   padding: 0;
+  transition: transform 0.2s;
+}
+
+.nav-button:hover {
+    transform: scale(1.1);
+}
+
+/* Handle Icons in Dark Mode */
+.nav-icon img, 
+.nav-button img {
+    filter: var(--icon-filter);
+    transition: filter 0.3s ease;
+}
+
+/* --- Search Bar Styling --- */
+.search-box {
+    display: flex;
+    align-items: center;
+    background-color: var(--bg-body);
+    border: 1px solid var(--border-color);
+    border-radius: 50px;
+    padding: 5px 15px;
+    margin-left: 20px;
+    transition: all 0.3s ease;
+}
+
+.search-box:focus-within {
+    background-color: var(--bg-card);
+    border-color: var(--gold);
+    box-shadow: 0 0 10px rgba(140, 131, 105, 0.2);
+}
+
+.search-box input {
+    border: none;
+    outline: none;
+    background: transparent;
+    padding: 5px;
+    font-family: 'Baloo Bhaijaan 2', sans-serif;
+    width: 140px;
+    text-align: right; 
+    color: var(--text-main);
+    font-size: 0.95rem;
+}
+
+.search-box button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.6;
+    transition: opacity 0.3s;
+}
+
+.search-box button:hover {
+    opacity: 1;
+}
+
+.search-box button img {
+    width: 18px;
+    height: 18px;
+    filter: var(--icon-filter);
+}
+
+@media (max-width: 600px) {
+    .search-box input {
+        width: 100px;
+    }
 }
 
 /* Dropdown Menu */
@@ -76,24 +190,29 @@ body {
   display: none;
   position: absolute;
   right: 0;
-  background-color: #dddddd;
+  background-color: var(--bg-card);
   min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  box-shadow: var(--shadow-soft);
   z-index: 100;
   border-radius: 10px;
   top: 100%;
+  border: 1px solid var(--border-color);
+  padding: 10px 0;
 }
 
 .dropdown-menu .dropdown-item {
-  color: black;
-  padding: 12px 16px;
+  color: var(--text-main);
+  padding: 12px 20px;
   text-decoration: none;
   display: block;
   text-align: right;
+  transition: background 0.2s, color 0.2s;
 }
 
 .dropdown-menu .dropdown-item:hover {
-  background-color: #f1f1f1;
+  background-color: var(--bg-body);
+  color: var(--gold);
+  padding-right: 25px;
 }
 
 .dropdown:hover .dropdown-menu {
@@ -105,61 +224,68 @@ body {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 20px;
-  padding: 20px;
+  gap: 30px;
+  padding: 40px 20px;
   min-height: 60vh;
 }
 
+/* --- Stylish Product Card --- */
 .pro1 {
   width: 280px;
-  padding: 10px;
+  padding: 12px;
   border-radius: 25px;
-  background-color: #f9f9f9;
-  border: 1px solid #ccc;
+  background-color: var(--bg-card);
+  border: none;
   position: relative;
-  transition: transform 0.3s, box-shadow 0.3s;
+  transition: all 0.4s ease;
   overflow: hidden;
+  box-shadow: var(--shadow-soft);
 }
 
 .pro1:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
 }
 
-/* Product Image */
+/* Image with Zoom Effect */
 .pro1 img {
   width: 100%;
   height: 280px;
   object-fit: cover;
   border-radius: 20px;
+  transition: transform 0.5s ease;
+}
+
+.pro1:hover img {
+    transform: scale(1.05);
 }
 
 /* Description Area */
 .des {
   text-align: right;
-  padding: 10px 5px;
+  padding: 15px 10px;
 }
 
 .des h5 {
-  font-size: 1.1rem;
-  margin-bottom: 5px;
-  color: #2c2c2c;
+  font-size: 1.15rem;
+  margin-bottom: 8px;
+  color: var(--text-main);
   min-height: 50px;
   font-family: 'Baloo Bhaijaan 2', sans-serif;
+  line-height: 1.4;
 }
 
-/* --- PRICE FONT FIX --- */
+/* Price Style */
 .des p {
-  /* Using Tahoma makes numbers look clean and standard */
   font-family: 'Tahoma', 'Arial', sans-serif; 
-  font-size: 1.1rem;
-  color: #8c8369;    /* Gold Color */
+  font-size: 1.2rem;
+  color: var(--gold);
   font-weight: bold;
   margin-top: 5px;
-  letter-spacing: 0.5px; /* Slight spacing for better readability */
+  letter-spacing: 0.5px;
 }
 
-/* --- BUTTON FIX --- */
+/* --- COOL BUTTON STYLE --- */
 .shopping-pro {
   position: absolute;
   bottom: 15px;
@@ -167,20 +293,22 @@ body {
   width: 45px !important;
   height: 45px !important;
   border-radius: 50%;
-  background: linear-gradient(45deg, rgba(203,194,165,1) 2%, rgba(150,140,104,1) 45%, rgba(195,183,151,1) 100%);
+  /* Elegant Gold Gradient */
+  background: linear-gradient(135deg, #d4c8a5, #968c68); 
   border: none;
   cursor: pointer;
   padding: 0; 
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: transform 0.2s;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  transition: transform 0.3s, box-shadow 0.3s;
+  box-shadow: 0 4px 10px rgba(150, 140, 104, 0.4); 
   z-index: 10;
 }
 
 .shopping-pro:hover {
-  transform: scale(1.1);
+  transform: scale(1.15) rotate(90deg);
+  box-shadow: 0 6px 15px rgba(150, 140, 104, 0.6);
 }
 
 .shopping-pro img {
@@ -194,13 +322,13 @@ body {
   display: block;
 }
 
-/* --- Footer --- */
+/* --- Luxury Footer (Always Dark) --- */
 footer {
-  background-color: #9f9f9f;
+  background-color: #2c2c2c;
   color: #ececec;
   text-align: center;
-  padding: 30px 20px;
-  margin-top: 50px;
+  padding: 50px 20px;
+  margin-top: 80px;
 }
 
 .footer-content {
@@ -209,6 +337,8 @@ footer {
   align-items: center;
   max-width: 1200px;
   margin: 0 auto;
+  border-bottom: 1px solid #444;
+  padding-bottom: 30px;
 }
 
 .brand {
@@ -224,34 +354,41 @@ footer {
 }
 
 .categories li {
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 }
 
 .categories a {
   text-decoration: none;
-  color: #fff;
-  transition: color 0.3s;
+  color: #bbb;
+  font-size: 1.1rem;
+  transition: all 0.3s;
+  display: inline-block;
 }
 
 .categories a:hover {
-  color: #2c2c2c;
+  color: var(--gold);
+  transform: translateX(-5px);
 }
 
 /* --- Responsive Design --- */
 @media (max-width: 768px) {
   .navbar-nav {
     flex-direction: column;
-    gap: 10px;
+    gap: 15px;
   }
   
   .nav-icon {
     justify-content: center;
     width: 100%;
-    margin-top: 10px;
+    margin-top: 15px;
   }
 
   .footer-content {
     flex-direction: column;
-    gap: 20px;
+    gap: 30px;
+  }
+  
+  .categories ul {
+      text-align: center;
   }
 }
